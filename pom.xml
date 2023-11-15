@@ -98,13 +98,13 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>Ritish Reddy Releases Nexus Repository</name>
-	      <url>http://172.31.2.8:8081/repository/web/</url>
+	      <url>http://172.31.1.84:8081/repository/web-snapshots/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Ritish Reddy Snapshot Nexus Repository </name>
-	      <url>http://172.31.2.8:8081/repository/web1/</url>
+	      <url>http://172.31.1.84:8081/repository/web-releases/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
