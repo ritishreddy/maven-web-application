@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>RitishReddyRampa Technologies- Home Page</title>
+<title>RitishRampa Technologies- Home Page</title>
 <link href="images/mithunlogo.jpg" rel="icon">
 </head>
 </head>
 <body>
-<h1 align="center">Welcome to RitishReddyRampa Technologies Pvt Ltd. Ph No: +91-9032400007,+91-9900012028,+91-9980923216  Bengaluru,Karnataka </h1>
+<h1 align="center">Welcome to RitishRampa Technologies Pvt Ltd. Ph No: +91-9032400007,+91-9900012028,+91-9980923216  Bengaluru,Karnataka </h1>
 <h1 align="center"> Mithun Technologies- Very Good Training center for DevOps with AWS,Python & AWS Solution Architect in Bangalore India and also for Job Assitance Job Support also...Teaching Real Time scnerios</h1>
 <hr>
 <br>
