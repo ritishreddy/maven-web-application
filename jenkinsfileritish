@@ -1,0 +1,41 @@
+node {
+    timestamps {
+  
+   echo "The Job name is: ${env.JOB_NAME}"        // global variables reference
+   echo "The build number is: ${env.BUILD_NUMBER}"
+   echo "The Node name is: ${env.NODE_NAME}"
+    echo "The Home name is: ${env.JENKINS_HOME}"
+   
+    jacoco buildOverBuild: true, deltaBranchCoverage: '10', deltaClassCoverage: '10', deltaComplexityCoverage: '10', deltaInstructionCoverage: '10', deltaLineCoverage: '10', deltaMethodCoverage: '10', maximumBranchCoverage: '10', maximumClassCoverage: '10', maximumComplexityCoverage: '10', maximumInstructionCoverage: '10', maximumLineCoverage: '10', maximumMethodCoverage: '10', minimumBranchCoverage: '10', minimumClassCoverage: '10', minimumComplexityCoverage: '10', minimumInstructionCoverage: '10', minimumLineCoverage: '10', minimumMethodCoverage: '10', runAlways: true
+    
+    properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '2', daysToKeepStr: '', numToKeepStr: '2')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])
+    def mavenHome = tool name: "Maven3.9.6", type: "maven"
+    stage("Git clone") {
+        git credentialsId: '789f4102-bf6f-4cbd-b534-34772e10cd8c', url: 'https://github.com/ritishreddy/maven-web-application.git'
+    }
+
+    stage("Maven Clean Build") {
+        def mavenCMD = "${mavenHome}/bin/mvn"
+        sh "${mavenCMD} clean package"
+    }
+
+    stage("SonarQubeReport") {
+            
+            withSonarQubeEnv(credentialsId: '7a5e30b0-cd6d-4e02-9178-92c4acf46929') {
+            def mavenCMD = "${mavenHome}/bin/mvn"
+            sh "${mavenCMD} clean sonar:sonar"
+}
+            
+    }
+    stage("Upload Into Nexus Repository") {
+        def mavenCMD = "${mavenHome}/bin/mvn"
+        sh "${mavenCMD} clean deploy"
+    }
+
+stage("DeployAppIntoTomcat") {
+sshagent(['1d7f8fcb-fa8f-4f72-abca-626aa36089e9']) {
+ sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war   ec2-user@172.31.8.240:/opt/apache-tomcat-9.0.83/webapps/ "  
+}
+}
+}
+}
