@@ -1,7 +1,7 @@
 node {
     timestamps {
   
-   echo "The Job name is: ${env.JOB_NAME}"        // global variables reference
+   echo "The Job name is: ${env.JOB_NAME}"        // global variables referenc
    echo "The build number is: ${env.BUILD_NUMBER}"
    echo "The Node name is: ${env.NODE_NAME}"
     echo "The Home name is: ${env.JENKINS_HOME}"
