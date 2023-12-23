@@ -1,0 +1,39 @@
+pipeline{
+
+agent any
+
+tools{
+
+maven 'Maven3.9.6'
+
+}
+parameters {
+  choice choices: ['development', 'master', 'qa', 'sit', 'uat'], description: 'select the branch', name: 'BranchName'
+  string defaultValue: 'Ritish Reddy Rampa', description: 'Change the default name on demand', name: 'Name'
+}
+options {
+  buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '2', daysToKeepStr: '', numToKeepStr: '2')
+}
+
+stages{
+
+stage('CheckOutCode'){
+
+steps{
+
+git branch: "${params.BranchName}", git credentialsId: '789f4102-bf6f-4cbd-b534-34772e10cd8c', url: 'https://github.com/ritishreddy/maven-web-application.git'
+
+}
+
+}
+stage('Build'){
+steps{
+sh "mvn clean package"
+sh "echo the person name is: ${params.Name}"
+}
+
+}
+} // stages closing
+
+
+} //pipelineclosing
