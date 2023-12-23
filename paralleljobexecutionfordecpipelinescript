@@ -1,0 +1,44 @@
+pipeline{
+
+agent any
+
+tools{
+
+maven 'Maven3.9.6'
+
+}
+
+options {
+  buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '2', daysToKeepStr: '', numToKeepStr: '2')
+}
+
+stages{
+
+stage('CheckOutCode'){
+
+steps{
+
+git credentialsId: '789f4102-bf6f-4cbd-b534-34772e10cd8c', url: 'https://github.com/ritishreddy/maven-web-application.git'
+
+}
+
+}
+stage('RunUnitTestCases&Build') {
+            steps {
+                script {
+                    parallel(
+                        RunTestCases: {
+                            sh "mvn clean test"
+                        },
+                        Build: {
+                            sh "mvn clean package"
+                        }
+                    )
+                }
+            }
+        }
+
+} // stages closing
+
+
+} //pipelineclosing
