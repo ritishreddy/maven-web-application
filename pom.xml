@@ -1,23 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
-	
-        <profiles>
-        <profile>
-        <id>rrr-java-web-app</id>
-        <activation>
-          <activeByDefault>true</activeByDefault>
-        </activation>
-        <repositories>
-        <repository>
-        <id>rrr-java-web-app</id>
-        <url>https://rrr-346978178937.d.codeartifact.ap-southeast-2.amazonaws.com/maven/java-web-app/</url>
-        </repository>
-        </repositories>
-        </profile>
-        </profiles>
-	<!-- <groupId>com.mt</groupId>
+	<groupId>com.mt</groupId>
 	<artifactId>maven-web-application</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1</version>
@@ -29,7 +13,7 @@
 	<organization>
 		<name>Mithun Technologies</name>
 		<url>http://mithuntechnologies.com/</url>
-	</organization> -->
+	</organization> 
 
 	<properties>
 		<jdk.version>1.8</jdk.version>
